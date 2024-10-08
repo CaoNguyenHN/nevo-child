@@ -1,0 +1,150 @@
+/* Custom woocommerce */
+.product-loop-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-loop-image .product-loop-hover-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.product-loop-image:hover .product-loop-hover-image {
+  opacity: 1;
+}
+
+.product-loop-image.zoom {
+   overflow: hidden;
+   -webkit-backface-visibility: hidden;
+   -webkit-transform: translate3d(0, 0, 0);
+}
+.product-loop-image.zoom img {
+   max-width: 100%;
+   height: auto;
+   display: block;
+   -webkit-transition: all 1s ease;
+   -moz-transition: all 1s ease;
+   -ms-transition: all 1s ease;
+   -o-transition: all 1s ease;
+   transition: all 1s ease;
+   vertical-align: middle;
+   line-height: 0;
+}
+.product-loop-image.zoom img:hover {
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  transform: scale(1.25);
+}
+
+.product-loop-image a {
+    text-align: -webkit-center;
+}
+
+.product-loop-image.height img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.product-loop-image .product-loop-image {
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.product-loop-image:hover .product-loop-hover-image + .product-loop-image {
+  opacity: 0;
+}
+@media (min-width: 768px) {
+	.woocommerce .woocommerce-form .form-row-first,
+	.woocommerce .woocommerce-form .form-row-last {
+		display: block;
+		width: 48%;
+		float: left;
+	}
+	.woocommerce .woocommerce-form .form-row-last {
+		margin-left: 4%;
+	}
+}
+.woocommerce .woocommerce-form .form-row input.input-checkbox {
+	appearance: auto;
+	display: inline-block;
+	padding: 0;
+	width: auto;
+	min-height: 0px;
+}
+.woocommerce .form-row .select2-container .select2-selection--single,
+.woocommerce .woocommerce-form .form-row input, .woocommerce .woocommerce-form .form-row select, .woocommerce .woocommerce-form .form-row textarea {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    min-height: 38px;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.woocommerce form .form-row .select2-container .select2-selection--single {
+    padding: .3rem .3rem !important;
+}
+.woocommerce .form-row .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 38px;
+    position: absolute;
+    top: 0px;
+    right: 1px;
+    width: 20px;
+}
+.woocommerce-checkout #payment ul.payment_methods>li>label {
+    color: #000;
+    line-height: 1;
+    cursor: pointer;
+}
+#add_payment_method #payment ul.payment_methods li img,
+.woocommerce-cart #payment ul.payment_methods li img, .woocommerce-checkout #payment ul.payment_methods li img {
+    vertical-align: middle;
+    margin: -2px 0 0 .5em;
+    padding: 0;
+    position: relative;
+    box-shadow: none;
+	max-height: 45px;
+}
+.woocommerce .woocommerce-cart-form .product-thumbnail {
+    width: 80px;
+    min-width: 80px;
+}
+.woocommerce-message.check {
+	position: relative;
+	list-style-type: none;
+	padding-left: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+.woocommerce-message.check:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 15px;
+    border-width: 0 2px 2px 0;
+    border-style: solid;
+    border-color: #198754;
+    transform-origin: bottom left;
+    transform: rotate(45deg);
+}

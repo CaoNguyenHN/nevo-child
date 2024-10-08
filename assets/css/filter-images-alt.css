@@ -1,0 +1,10 @@
+th.column-alt-text-status,
+td.column-alt-text-status {
+   text-align: center;
+}
+td.column-alt-text-status .dashicons-warning {
+   color: darkorange;
+}
+td.column-alt-text-status .dashicons-yes-alt {
+   color: darkgreen;
+}

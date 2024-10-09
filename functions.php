@@ -83,55 +83,11 @@ function nevo_get_favicon_url() {
 }
 
 function child_theme_enqueue_scripts() {
-	if ( is_page_template('template-parts/frontpage.php') ) {
-		// enqueue SwiperJS CSS
-		//wp_enqueue_style('swiper-bundle-css', get_stylesheet_directory_uri() . '/assets/css/swiper-bundle.min.css', null, '9.1.1');
-		// enqueue Glightbox CSS
-		//wp_enqueue_style('glightbox-css', get_stylesheet_directory_uri() . '/assets/css/glightbox.min.css', null, '3.2.0');
-		// enqueue Aos CSS
-		wp_register_style('aos-style', get_stylesheet_directory_uri() . '/assets/css/aos.css', [], '3.0');
-		
-		// enqueue SwiperJS JavaScript
-		//wp_enqueue_script('swiper-bundle-js', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', null, '9.1.1');
-		
-		// enqueue Glightbox JavaScript
-		//wp_enqueue_script('glightbox-js', get_stylesheet_directory_uri() . '/assets/js/glightbox.min.js', null, '3.2.0');
-		
-		// enqueue Aos JavaScript
-		wp_register_script('aos-script', get_stylesheet_directory_uri() . '/assets/js/aos.js', [], '3.0', true);
-		
-		wp_enqueue_style( 'aos-style' );
-		wp_enqueue_script( 'aos-script' );
-		
-		// default aos init
-		/* 	bù đắp: -100
-			thời lượng: 1100
-			nới lỏng: giảm bớt
-			chậm trễ: 0
-			một lần: đúng
-		*/
-		$aos_init = apply_filters( 'nevo_child_aos_init',
-		'var aoswp_params = {
-		"offset":"-100",
-		"duration":"1100",
-		"easing":"ease",
-		"delay":"0",
-		"once":true};'
-		);
-		
-		// minify the aos init inline script before inject
-		$aos_init = preg_replace(['/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\'|\")\/\/.*))/','/\>[^\S ]+/s','/[^\S ]+\</s','#("(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\'|\/\*(?>.*?\*\/))|\s*+;\s*+(})\s*+|\s*+([*$~^|]?+=|[{};,>~]|\s(?![0-9\.])|!important\b)\s*+|([[(:])\s++|\s++([])])|\s++(:)\s*+(?!(?>[^{}"\']++|"(?:[^"\\\]++|\\\.)*+"|\'(?:[^\'\\\\]++|\\\.)*+\')*+{)|^\s++|\s++\z|(\s)\s+#si'],['','>','<','$1$2$3$4$5$6$7'], $aos_init);
-		
-		// inject aos init inline script
-		wp_add_inline_script( 'aos-script', wp_kses_data($aos_init), 'before' );
-	}
+	
 	// Remove woo blocks-style
 	wp_dequeue_style( 'wc-blocks-style' );
 	// enqueue Main JavaScript
 	//wp_enqueue_script('main-js', get_stylesheet_directory_uri() . '/assets/js/main.js', array(), '0.1', true);
-	
-	//wp_enqueue_script('lazyload-js', get_stylesheet_directory_uri() . '/assets/js/lazyload.min.js', array(), '17.5.0', true);
-	//wp_enqueue_script('lazyload-init', get_stylesheet_directory_uri() . '/assets/js/lazyload-init.js', array('lazyload-js'), '1.0', true);
 	
 }
 add_action( 'wp_enqueue_scripts', 'child_theme_enqueue_scripts' );

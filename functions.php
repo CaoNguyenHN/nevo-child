@@ -45,32 +45,41 @@ function nevo_load_favicon() {
  * @return string Path to favicon.
  */
 function nevo_get_favicon_url() {
-	// Get the path of the child theme and parent theme
-	$child_dir_uri = get_stylesheet_directory_uri();
-	$parent_dir_uri = get_template_directory_uri();
+    // Get the paths and URIs of the child and parent themes
+    $child_dir_uri  = get_stylesheet_directory_uri();
+    $parent_dir_uri = get_template_directory_uri();
+    $child_dir_path = get_stylesheet_directory();
+    $parent_dir_path = get_template_directory();
 
-	// Check the filter to allow the child theme to automatically assign a favicon
-	$pre = apply_filters('nevo_pre_load_favicon', false);
+    // Check the filter to allow the child theme to automatically assign a favicon
+    $pre = apply_filters('nevo_pre_load_favicon', false);
 
-	// If there is a favicon from the filter, use it
-	if ($pre !== false) {
-		$favicon_url = $pre;
-	}
-	// Check if the child theme has a favicon
-	elseif ($child_dir_uri . '/assets/images/favicon.png') {
-		$favicon_url = $child_dir_uri . '/assets/images/favicon.png';
-	}
-	// If not, check if the parent theme has a favicon
-	elseif ($parent_dir_uri . '/assets/images/favicon.png') {
-		$favicon_url = $parent_dir_uri . '/assets/images/favicon.png';
-	} else {
-		$favicon_url = ''; // If favicon not found
-	}
+    // If there is a favicon from the filter, use it (ensure it's a valid URL)
+    if ($pre !== false) {
+        return esc_url(trim($pre));
+    }
 
-	// Allow editing of favicon path via filter
-	$favicon_url = apply_filters('nevo_favicon_url', $favicon_url);
+    // Function to check if favicon exists in a given path and return its URI
+    static $cached_favicon = null; // Cache to avoid redundant checks
 
-	return trim($favicon_url);
+    if ($cached_favicon === null) {
+        $find_favicon = function($dir_path, $dir_uri) {
+            foreach (['png', 'ico'] as $ext) {
+                $favicon_path = "$dir_path/assets/images/favicon.$ext";
+                if (@is_file($favicon_path)) { // Use @ to suppress warnings if path is inaccessible
+                    return "$dir_uri/assets/images/favicon.$ext";
+                }
+            }
+            return false;
+        };
+
+        // Check child theme, then parent theme for favicon
+        $cached_favicon = $find_favicon($child_dir_path, $child_dir_uri) ?: 
+                          $find_favicon($parent_dir_path, $parent_dir_uri) ?: '';
+    }
+
+    // Allow editing of favicon path via filter
+    return esc_url(trim(apply_filters('nevo_favicon_url', $cached_favicon)));
 }
 
 function child_theme_enqueue_scripts() {

@@ -108,7 +108,7 @@ $optimisations = [
                                         // Block requests to external HTTP addresses. This blocks all requests made by plugins to external addresses.
     'defer_CSS'                 => false, // Trì hoãn việc tải tất cả các kịch bản đã đăng ký bằng cách sử dụng hàm loadCSS từ Filament Group.
                                         // Defer the loading of all registered scripts using the loadCSS function from Filament Group.
-    'defer_JS'                  => true,  // Thêm defer="defer" cho tất cả các tệp JavaScript đã được đăng ký. (trì hoãn quá trình xử lý JS)
+    'defer_JS'                  => false,  // Thêm defer="defer" cho tất cả các tệp JavaScript đã được đăng ký. (trì hoãn quá trình xử lý JS)
                                         // Add defer="defer" to all registered JavaScript files. (delays JS execution)
     'classic_widget'            => true, // Bật màn hình cài đặt widget cổ điển trong Giao diện - Widget và Tùy biến. Vô hiệu hóa trình chỉnh sửa khối khỏi việc quản lý tiện ích con.
                                         // Enable the classic widget screen in Appearance - Widgets and Customizer. Disable block editor for widget management.

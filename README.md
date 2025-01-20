@@ -11,6 +11,7 @@ Người dùng có thể sử dụng favicon ngay trên child theme với tệp 
 
 $defaults =  [
             'block_external_HTTP'       => false,
+	    
             'defer_CSS'                 => false,
             'defer_JS'                  => false,
 			'classic_widget'      		=> false,

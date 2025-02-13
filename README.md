@@ -9,6 +9,7 @@ Người dùng có thể sử dụng favicon ngay trên child theme với tệp 
 
 # Custom - You can customize by accessing the functions.php file
 
+```php
 $optimisations = [
 
     'block_external_HTTP'       => false, // Chặn các yêu cầu đến địa chỉ HTTP bên ngoài. Do đó, chặn tất cả các yêu cầu được thực hiện bởi các plugin đến các địa chỉ bên ngoài.
@@ -70,3 +71,4 @@ $optimisations = [
     'smooth_scroll'             => true  // Kích hoạt cuộn trang mượt mà.
                                         // Enable smooth scrolling on the website.
 ];
+```

@@ -99,7 +99,7 @@ require get_stylesheet_directory() . '/inc/languages/nevo-languages.php';
 require get_stylesheet_directory() . '/inc/wp-optimize/optimize.php';
 
 $true = true;
-if(class_exists( 'WooCommerce' ) || function_exists( 'wc' )) {
+if(class_exists( 'WooCommerce' ) || function_exists( 'wc' ) || did_action('elementor/loaded') ){
 	$true = false;
 }
 
@@ -132,7 +132,7 @@ $optimisations = [
                                         // Remove the default jQuery script. Do not remove if the site or plugins rely on jQuery.
     'disable_jquery_migrate'    => $true, // Loại bỏ tệp script jQuery Migrate. Nếu trang web hoặc plugin phụ thuộc jQuery thì không nên loại bỏ.
                                         // Remove jQuery Migrate script. Do not remove if the site or plugins rely on jQuery.
-    'disable_rest_api'          => true, // Vô hiệu hóa REST API.
+    'disable_rest_api'          => $true, // Vô hiệu hóa REST API.
                                         // Disable REST API.
     'disable_RSD'               => true, // Loại bỏ liên kết RSD trong phần head của trang web.
                                         // Remove RSD links from the website's head section.
